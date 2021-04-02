@@ -45,7 +45,7 @@ module Message
          TEXT
   end
 
-  def show_ways
+  def index_message
 
     puts <<~TEXT
 
@@ -57,11 +57,11 @@ module Message
          TEXT
   end
 
-  def error_way_message(selected_way)
+  def error_way_message(selected_index)
     puts <<~TEXT
 
           =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=
-            #{selected_way}の道はありません。
+            #{selected_index}の道はありません。
             aまたはbを選んでください。
           =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=
 

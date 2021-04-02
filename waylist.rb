@@ -65,13 +65,13 @@ class WayList
     end
   end
 
-  def way
-    show_ways
+  def show_index
+    index_message
   end
 
-  # def show_message
-  #   @lists[:a][:msg]
-  # end
+  def pick_way(index)
+    @lists[index.to_sym].sample
+  end
 
 end
 

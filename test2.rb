@@ -29,10 +29,10 @@ class WayList
     selected_way
   end
 
-  def pick_hp_msg(way)
+  def pick_hp_msg(index)
     # binding.pry
-    way_ = way.to_sym
-    chosen_contents = way.sample
+    index = index.to_sym
+    chosen_contents = @lists[index.to_sym].sample
     puts "#{chosen_contents}"
     # if selected_way == "a"
     #   a_shuffle = @lists[:a].sample
@@ -59,5 +59,5 @@ end
 
 way_list = WayList.new("way_list.csv")
 
-# chosen_way = way_list.choose_way
+# one_way = way_list.choose_way
 way_list.pick_hp_msg(way_list.choose_way)

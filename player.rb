@@ -2,7 +2,6 @@ require "pry"
 require "csv"
 require "./character"
 require "./message"
-require "./ways_information"
 # require "./way.rb"
 
 
@@ -40,14 +39,14 @@ class Player
     game_explanation
   end
 
-  def choose_way(path)
+  def choose_index(path)
     while true
       print "aまたはbを入力 >"
-      selected_way = gets.chomp
-    break if selected_way == "a" || selected_way == "b"
-    error_way_message(selected_way)
+      selected_index = gets.chomp
+    break if selected_index == "a" || selected_index == "b"
+    error_way_message(selected_index)
     end
-    selected_way
+    selected_index
   end
 end
 
