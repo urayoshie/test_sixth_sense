@@ -1,6 +1,12 @@
+require "pry"
+require "./message"
+
 class Character
-  attr_reader :id, :name
-  attr_accessor :hp
+
+  include Message
+
+  attr_reader :id
+  attr_accessor :name, :hp
   @@count = 0
 
   def initialize(character_params)
@@ -10,17 +16,13 @@ class Character
   end
 
   def calculation_hp(proceed_way)
+    proceeded_way_hp = proceed_way[:additional_hp]
+    proceeded_way_msg = proceed_way[:msg]
 
-    # proceeded_way_hp = proceeded_way[:additional_hp].to_i
-    # proceeded_way_msg = proceeded_way[:msg]
-    #
-    # left_hp = chosen_character.hp + proceeded_way[:additional_hp].to_i
-    #   puts <<~TEXT
-    #         =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=
-    #         #{proceeded_way_msg}
-    #
-    #         #{chosen_character.name}のHPは#{left_hp}です。
-    #         =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=
-    #        TEXT
+    @hp += proceeded_way_hp
+
+    @hp = 0 if @hp <= 0
+
+    action_message(proceeded_way_msg)
   end
 end

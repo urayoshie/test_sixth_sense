@@ -1,8 +1,9 @@
 require "pry"
 require "csv"
 require "./character"
+require "./waylist.rb"
 require "./message"
-# require "./way.rb"
+
 
 
 class Player
@@ -17,7 +18,7 @@ class Player
       @characters << Character.new(param)
     end
   end
- # binding.spry
+
   def show_characters
 
     start_message
@@ -39,26 +40,36 @@ class Player
     game_explanation
   end
 
-  def choose_index(path)
+  def choose_name
     while true
       print "aまたはbを入力 >"
-      selected_index = gets.chomp
-    break if selected_index == "a" || selected_index == "b"
-    error_way_message(selected_index)
+      selected_name = gets.chomp
+    break if selected_name == "a" || selected_name == "b"
+    error_way_message(selected_name)
     end
-    selected_index
+    selected_name
+  end
+
+  def choose_way
+
+    way_list = WayList.new("way_list.csv")
+
+    while true
+      way_list.show_name
+      proceed_way = way_list.pick_way(choose_name)
+      @chosen_character.calculation_hp(proceed_way)
+    break if @chosen_character.hp >= 1000 || @chosen_character.hp <= 0
+    end
+    result
+  end
+
+  def result
+    if @chosen_character.hp >= 1000
+      goal_message
+
+    elsif @chosen_character.hp == 0
+      lost_message
+
+    end
   end
 end
-
-# character_params = [
-#   { name: "マリオ", hp: 500 },
-#   { name: "ルイージ", hp: 450 },
-#   { name: "ピーチ", hp: 400 },
-# ]
-#
-# player = Player.new(character_params)
-#
-# player.show_characters
-# player.choose_character(character_params)
-# player.first_action
-# player.choose_way

@@ -45,10 +45,8 @@ module Message
          TEXT
   end
 
-  def index_message
-
+  def way_message
     puts <<~TEXT
-
            AまたはBどちらの道に進みますか？
 
            A道 => a
@@ -57,35 +55,49 @@ module Message
          TEXT
   end
 
-  def error_way_message(selected_index)
+  def error_way_message(selected_name)
     puts <<~TEXT
 
           =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=
-            #{selected_index}の道はありません。
+            #{selected_name}の道はありません。
             aまたはbを選んでください。
           =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=
 
         TEXT
   end
 
-  # def a_hp_action_message
-  #   puts <<~TEXT
-  #         =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=
-  #         #{a_shuffle[:msg]}
-  #
-  #         #{chosen_character.name}のHPは#{a_shuffle[:additional_hp].to_i}です。
-  #         =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=
-  #        TEXT
-  # end
-  #
-  # def b_hp_action_message
-  #   puts <<~TEXT
-  #         =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=
-  #         #{b_shuffle[:msg]}
-  #
-  #         #{chosen_character.name}のHPは#{b_shuffle[:additional_hp].to_i}です。
-  #         =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=
-  #        TEXT
-  # end
+  def action_message(proceeded_way_msg)
+    puts <<~TEXT
+
+          =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=
+          #{proceeded_way_msg}
+
+          #{@name}のHPは#{@hp}です。
+          =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=
+
+         TEXT
+  end
+
+  def goal_message
+    puts <<~TEXT
+            #{@chosen_character.name}は城に着いた!
+
+            あなたは驚異的なSIXTH SENSEの持ち主です。
+            自分の直感を信じてこの先も突き進みましょう！
+
+            =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=
+
+         TEXT
+  end
+
+  def lost_message
+    puts <<~TEXT
+            #{@chosen_character.name}は迷子になった。
+            SIXTH SENSEを鍛えて出直しましょう！
+
+            =*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=
+
+         TEXT
+  end
 
 end
